@@ -31,9 +31,19 @@
 		});
 
 	// Forms.
+	const $form = document.querySelector("#form")
+	const $buttonMailto = document.querySelector("#enviocorreo")
 
+	$form.addEventListener('submit', handleSubmit)
+
+	function handleSubmit (event) {
+		event.preventDefault()
+		const form = new FormData(this)
+		$buttonMailto.setAttribute('href', 'mailto:cantillohenao@gmail.com?subject=nombre ${form.get("name")} correo ${form.get("mail")}&body=${form.get("message")}')
+		$buttonMailto.click()
+	}
 		// Hack: Activate non-input submits.
-			$('form').on('click', '.submit', function(event) {
+		/*$('form').on('click', '.submit', function(event) {
 
 				// Stop propagation, default.
 					event.stopPropagation();
@@ -42,7 +52,7 @@
 				// Submit form.
 					$(this).parents('form').submit();
 
-			});
+			});*/
 
 	// Sidebar.
 		if ($sidebar.length > 0) {
